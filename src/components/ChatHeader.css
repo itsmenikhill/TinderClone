@@ -1,0 +1,29 @@
+.chat-container-header {
+    background: linear-gradient(45deg, #fe3072, #ff5940);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-icon, .profile {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+}
+
+.img-container {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.image-container img {
+    width: 100%;
+}
+;
+
+

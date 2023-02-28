@@ -1,0 +1,5 @@
+.chat-display {
+    padding: 10px;
+    height: 50vh;
+    overflow-y: auto;
+}
