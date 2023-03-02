@@ -16,7 +16,6 @@ function OnBoarding() {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
     const name = e.target.name;
-    console.log(value + " " + name);
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -27,7 +26,7 @@ function OnBoarding() {
     console.log("submitted");
     e.preventDefault();
     try {
-      const response = await axios.put("http://localhost:8000/user", {
+      const response = await axios.put(`http://localhost:8001/user`, {
         formData,
       });
       console.log(response);
@@ -140,38 +139,36 @@ function OnBoarding() {
                 checked={formData.show_gender}
               />
             </div>
-            <label htmlFor="interest">Show me</label>
+            <label>Show Me</label>
+
             <div className="multiple-input-container">
               <input
-                type="radio"
                 id="man-gender-interest"
-                name="gender_preference"
-                onChange={handleChange}
-                required={true}
+                type="radio"
+                name="gender_interest"
                 value="man"
-                checked={formData.gender_preference === "man"}
+                onChange={handleChange}
+                checked={formData.gender_interest === "man"}
               />
               <label htmlFor="man-gender-interest">Man</label>
               <input
-                type="radio"
                 id="woman-gender-interest"
-                name="gender_preference"
-                onChange={handleChange}
-                required={true}
+                type="radio"
+                name="gender_interest"
                 value="woman"
-                checked={formData.gender_preference === "woman"}
+                onChange={handleChange}
+                checked={formData.gender_interest === "woman"}
               />
               <label htmlFor="woman-gender-interest">Woman</label>
               <input
+                id="everyone-gender-interest"
                 type="radio"
-                id="more-gender-interest"
-                name="gender_preference"
+                name="gender_interest"
+                value="everyone"
                 onChange={handleChange}
-                required={true}
-                value="more"
-                checked={formData.gender_preference === "more"}
+                checked={formData.gender_interest === "everyone"}
               />
-              <label for="more-gender-interest">Everyone</label>
+              <label htmlFor="everyone-gender-interest">Everyone</label>
             </div>
 
             <label htmlFor="about">About me</label>
