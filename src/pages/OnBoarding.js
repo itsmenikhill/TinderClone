@@ -2,8 +2,15 @@ import React from "react";
 import { useState } from "react";
 import Nav from "../components/Nav";
 import "./OnBoarding.css";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function OnBoarding() {
+  const navigate = useNavigate();
+
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+
   const handleChange = (e) => {
     console.log("e", e);
     const value =
@@ -16,12 +23,23 @@ function OnBoarding() {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
     console.log("submitted");
+    e.preventDefault();
+    try {
+      const response = await axios.put("http://localhost:8000/user", {
+        formData,
+      });
+      console.log(response);
+      const success = response.status === 200;
+      if (success) navigate("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const [formData, setFormData] = useState({
-    user_id: "",
+    user_id: cookies.UserId,
     first_name: "",
     dob_day: "",
     dob_month: "",
@@ -29,7 +47,6 @@ function OnBoarding() {
     show_gender: false,
     gender_identity: "male",
     gender_preference: "woman",
-    email: "",
     url: "",
     about: "",
     matches: [],

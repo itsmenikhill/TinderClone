@@ -6,20 +6,33 @@ import axios from "../axios";
 
 function Dashboard() {
 
-  const [characters, setCharacters] = useState([]);
-  const [lastDirection, setLastDirection] = useState();
+  // [characters, setCharacters] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const req = await axios.get("/tinder/cards");
-      setCharacters(req.data);
-      console.log(req.data)
+
+  const characters = [
+    {
+      first_name: 'Richard Hendricks',
+      url: './img/richard.jpg'
+    },
+    {
+      first_name: 'Erlich Bachman',
+      url: './img/erlich.jpg'
+    },
+    {
+      first_name: 'Monica Hall',
+      url: './img/monica.jpg'
+    },
+    {
+      first_name: 'Jared Dunn',
+      url: './img/jared.jpg'
+    },
+    {
+      first_name: 'Dinesh Chugtai',
+      url: './img/dinesh.jpg'
     }
+  ]
 
-    fetchData();
-  }, []);
-
-  console.log(characters);
+  const [lastDirection, setLastDirection] = useState();
 
   const swiped = (direction, nameToDelete) => {
     console.log(nameToDelete + "deleted");
